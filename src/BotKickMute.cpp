@@ -11,7 +11,7 @@ void kick(string plain, bool HasPermission, GroupMessage m)
     {
         if (HasPermission == false)
         {
-            m.Reply(MessageChain().Plain("Celestial > 欸 欸 (′～`;) 你不是管理呢, Celestial 不認識你啊"));
+            m.Reply(MessageChain().Plain(Celestial_Access_Denial));
             return;
         }
         if (qm.size() > 0)
@@ -23,10 +23,10 @@ void kick(string plain, bool HasPermission, GroupMessage m)
                 sendqq = bot.GetGroupMessageFromId(msgid).Sender.QQ;
             }
 
-            bot.Kick(m.Sender.Group.GID, sendqq, "Kicked By ☆Celestial");
+            bot.Kick(m.Sender.Group.GID, sendqq, Celestial_Kick_Reason);
 
         }
-        m.Reply(MessageChain().Plain("Celestial > 操作成功執行。"));
+        m.Reply(MessageChain().Plain(Celestial_Action_Success));
         return;
     }
 
@@ -35,10 +35,10 @@ void kick(string plain, bool HasPermission, GroupMessage m)
     {
         if (HasPermission == false)
         {
-            m.Reply(MessageChain().Plain("Celestial > 欸 欸 (′～`;) 你不是管理呢, Celestial 不認識你啊"));
+            m.Reply(MessageChain().Plain(Celestial_Access_Denial));
             return;
         }
-        m.Reply(MessageChain().Plain("Celestial > 請指定踢出目標!"));
+        m.Reply(MessageChain().Plain(Celestial_Target_Not_Specified));
         return;
     }
 }
@@ -72,7 +72,7 @@ void mute(string plain, bool HasPermission, GroupMessage m)
     {
         if (HasPermission == false)
         {
-            m.Reply(MessageChain().Plain("Celestial > 欸 欸 (′～`;) 你不是管理呢, Celestial 不認識你啊"));
+            m.Reply(MessageChain().Plain(Celestial_Access_Denial));
             return;
         }
         if(qm.size() > 0)
@@ -89,7 +89,7 @@ void mute(string plain, bool HasPermission, GroupMessage m)
             bot.Mute(m.Sender.Group.GID, targetnum, mute_time);
 
         }
-        m.Reply(MessageChain().Plain("Celestial > 操作成功執行。"));
+        m.Reply(MessageChain().Plain(Celestial_Action_Success));
         return;
     }
 
@@ -98,7 +98,7 @@ void mute(string plain, bool HasPermission, GroupMessage m)
     {
         if (HasPermission == false)
         {
-            m.Reply(MessageChain().Plain("Celestial > 欸 欸 (′～`;) 你不是管理呢, Celestial 不認識你啊"));
+            m.Reply(MessageChain().Plain(Celestial_Access_Denial));
             return;
         }
         if(qm.size() > 0)
@@ -112,7 +112,7 @@ void mute(string plain, bool HasPermission, GroupMessage m)
             int mute_time = 30*60;
             bot.UnMute(m.Sender.Group.GID, targetnum);
         }
-        m.Reply(MessageChain().Plain("Celestial > 操作成功執行。"));
+        m.Reply(MessageChain().Plain(Celestial_Action_Success));
         return;
     }
 }
