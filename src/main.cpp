@@ -1,13 +1,7 @@
-// 注意: 本项目的所有源文件都必须是 UTF-8 编码
-
-// 这是一个“反撤回”机器人
-// 在群里回复 “/anti-recall enabled.” 或者 “撤回没用” 之后
-// 如果有人在群里撤回，那么机器人会把撤回的内容再发出来
-
 #include <iostream>
 #include <map>
+#include <vector>
 #include <mirai.h>
-#include "myheader.h"
 using namespace std;
 using namespace Cyan;
 
@@ -20,12 +14,13 @@ int main()
 
 	MiraiBot bot;
 	SessionOptions opts;
-	opts.BotQQ = 123456789_qq;				// 请修改为你的机器人QQ
+	opts.BotQQ = 239686941_qq;				// 请修改为你的机器人QQ
 	opts.HttpHostname = "localhost";		// 请修改为和 mirai-api-http 配置文件一致
 	opts.WebSocketHostname = "localhost";	// 同上
 	opts.HttpPort = 8080;					// 同上
 	opts.WebSocketPort = 8080;				// 同上
-	opts.VerifyKey = "VerifyKey";			// 同上
+	opts.VerifyKey = "123";			// 同上
+	bool anti_recall = false;
 
 	while (true)
 	{
@@ -43,7 +38,6 @@ int main()
 	}
 	cout << "Bot Working..." << endl;
 
-	// 用map记录哪些群启用了“反撤回”功能
 	map<GID_t, bool> groups;
 
 	bot.On<GroupMessage>(
@@ -51,18 +45,96 @@ int main()
 		{
 			try
 			{
+				// ======= Declearation =======
+
+				// 1. General
 				string plain = m.MessageChain.GetPlainText();
-				if (plain == "/anti-recall enabled." || plain == "撤回没用")
+				string msg = m.MessageChain.ToString();
+				vector<QuoteMessage> qm = m.MessageChain.GetAll<QuoteMessage>();
+				m.MessageChain.ToVector();
+				const string Version = "Celestial Alpha 0.1(Compiled with GNU GCC 11.1.0)\nRunning on Mirai(Linux amd64 5.13.10-arch1-1)\nMade with love by: SakuraiLH(GitHub)\n開源萬歲!\nIn-development right now.";
+
+				// 1. Bot Declearation
+				string bot_des = "";
+				bool isSpecified = false;
+				if (plain.length() > 4 && plain.substr(0,4) == ".bot")
+				{
+					bot_des = plain.substr(5);
+					isSpecified = true;
+				}
+
+				// ======= Functions =======
+
+				// 1. No-Recall
+
+				// + Enable
+				if (plain == ".norecall enable")
 				{
 					groups[m.Sender.Group.GID] = true;
-					m.Reply(MessageChain().Plain("撤回也没用，我都看到了"));
+					m.Reply(MessageChain().Plain("Celestial > 反撤回功能已被開啓."));
 					return;
 				}
-				if (plain == "/anti-recall disabled." || plain == "撤回有用")
+
+				// + Disable
+				if (plain == ".norecall disable")
 				{
 					groups[m.Sender.Group.GID] = false;
-					m.Reply(MessageChain().Plain("撤回有用"));
+					m.Reply(MessageChain().Plain("Celestial > 反撤回功能已被關閉."));
 					return;
+				}
+
+				// + General
+				if (plain == ".norecall")
+				{
+					if (groups[m.Sender.Group.GID] == true)
+					{
+						groups[m.Sender.Group.GID] = false;
+						m.Reply(MessageChain().Plain("Celestial > 反撤回功能已被關閉."));
+					}
+					else
+					{
+						groups[m.Sender.Group.GID] = true;
+						m.Reply(MessageChain().Plain("Celestial > 反撤回功能已被開啓."));
+					}
+				}
+
+				// 2. Bot
+
+				// + Not Specified
+				if (plain.substr(0,4) == ".bot" && isSpecified == false)
+				{
+					m.Reply(MessageChain().Plain(Version));
+				}
+				
+				// + Specified
+				if (plain.substr(0,4) == ".bot" && isSpecified == true)
+				{
+					if (bot_des == "2396") {
+						m.Reply(MessageChain().Plain(Version));
+					}
+				}
+
+				// 3. Ban
+
+				if (plain.substr(0,4) == ".ban" && msg.length() > 32)
+				{
+					if(qm.size() > 0)
+					{
+						QQ_t sendqq;
+						string target = "";
+						for (size_t i = 0; i < qm.size(); i ++) {
+							int msgid = qm.at(i).MessageId();
+							sendqq = bot.GetGroupMessageFromId(msgid).Sender.QQ;
+						}
+
+						bot.Kick(m.Sender.Group.GID, sendqq, "Kicked By ☆Celestial");
+
+					}
+					m.Reply(MessageChain().Plain("Celestial > 操作成功執行。"));
+				}
+				if (plain.substr(0,4) == ".ban" && msg.length() <= 32)
+				{
+					m.Reply(MessageChain().Plain("Celestial > 請指定踢出目標!"));
 				}
 			}
 			catch (const std::exception& ex)
@@ -79,7 +151,7 @@ int main()
 			{
 				if (!groups[e.Group.GID]) return;
 				auto recalled_mc = bot.GetGroupMessageFromId(e.MessageId).MessageChain;
-				auto mc = "刚刚有人撤回了: " + recalled_mc;
+				auto mc = "Celestial > 撤回內容如下: " + recalled_mc;
 				bot.SendMessage(e.Group.GID, mc);
 			}
 			catch (const std::exception& ex)
