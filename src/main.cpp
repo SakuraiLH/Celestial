@@ -2,6 +2,8 @@
 #include <map>
 #include <vector>
 #include <mirai.h>
+#include <sys/utsname.h>
+
 using namespace std;
 using namespace Cyan;
 
@@ -12,6 +14,29 @@ int main()
 	system("chcp 65001");
 #endif
 
+	// Clang 或是 G++
+	string true_cxx =
+#ifdef __clang__
+	"Clang++";
+#else
+	"GNU GCC";
+#endif
+
+	string current_os =
+#ifdef __WIN32
+	"Windows";
+#elif __unix__ && !__linux__
+	"Unix";
+#elif __APPLE__
+	"MacOS";
+#elif __linux__
+	"Linux";
+#elif __FreeBSD__
+	"FreeBSD";
+#else
+	"Unknown";
+#endif
+	const string compile_time = __TIMESTAMP__;
 	MiraiBot bot;
 	SessionOptions opts;
 	opts.BotQQ = 239686941_qq;				// 请修改为你的机器人QQ
@@ -52,7 +77,13 @@ int main()
 				string msg = m.MessageChain.ToString();
 				vector<QuoteMessage> qm = m.MessageChain.GetAll<QuoteMessage>();
 				m.MessageChain.ToVector();
-				const string Version = "Celestial Alpha 0.1(Compiled with GNU GCC 11.1.0)\nRunning on Mirai(Linux amd64 5.13.10-arch1-1)\nMade with love by: SakuraiLH(GitHub)\n開源萬歲!\nIn-development right now.";
+				const string Celestial_Short_Version = "0.1";
+				const string Celestial_Stable = "Alpha";
+				const string Celestial_Version = "Celestial " + Celestial_Stable + ' ' + Celestial_Short_Version + " By SakuraiLH(GitHub)" + '\n'
+															 + "(Compiled with " + true_cxx + " at " + compile_time + ")" + '\n'
+															 + "Running on Mirai/" + current_os + " for this build." + '\n'
+															 + "Long live the open source!" + '\n'
+															 + "Github Link: https://github.com/SakuraiLH/Celestial";
 
 				// bot變量探測
 				string bot_des = "";
@@ -77,7 +108,7 @@ int main()
 				// 沒有指定qq號前4位的bot
 				if (plain.substr(0,4) == ".bot" && isSpecified == false)
 				{
-					m.Reply(MessageChain().Plain(Version));
+					m.Reply(MessageChain().Plain(Celestial_Version));
 					return;
 				}
 				
@@ -85,7 +116,7 @@ int main()
 				if (plain.substr(0,4) == ".bot" && isSpecified == true)
 				{
 					if (bot_des == "2396") {
-						m.Reply(MessageChain().Plain(Version));
+						m.Reply(MessageChain().Plain(Celestial_Version));
 					}
 					return;
 				}
