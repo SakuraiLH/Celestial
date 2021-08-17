@@ -47,14 +47,14 @@ int main()
 			{
 				// ======= Declearation =======
 
-				// 1. General
+				// 其他變量
 				string plain = m.MessageChain.GetPlainText();
 				string msg = m.MessageChain.ToString();
 				vector<QuoteMessage> qm = m.MessageChain.GetAll<QuoteMessage>();
 				m.MessageChain.ToVector();
 				const string Version = "Celestial Alpha 0.1(Compiled with GNU GCC 11.1.0)\nRunning on Mirai(Linux amd64 5.13.10-arch1-1)\nMade with love by: SakuraiLH(GitHub)\n開源萬歲!\nIn-development right now.";
 
-				// 2. Bot Declearation
+				// bot變量探測
 				string bot_des = "";
 				bool isSpecified = false;
 				if (plain.length() > 4 && plain.substr(0,4) == ".bot")
@@ -63,29 +63,85 @@ int main()
 					isSpecified = true;
 				}
 
+				// 組權限探測
+				GroupPermission gp;
+				gp = m.Sender.Permission;
+				bool HasPermission = false;
+				if(GroupPermissionStr("ADMINISTRATOR") == gp || GroupPermissionStr("OWNER") == gp)
+				{
+					HasPermission = true;
+				}
+
 				// ======= Functions =======
 
-				// 1. No-Recall
+				// 沒有指定qq號前4位的bot
+				if (plain.substr(0,4) == ".bot" && isSpecified == false)
+				{
+					m.Reply(MessageChain().Plain(Version));
+					return;
+				}
+				
+				// 指定了QQ號前4位的bot
+				if (plain.substr(0,4) == ".bot" && isSpecified == true)
+				{
+					if (bot_des == "2396") {
+						m.Reply(MessageChain().Plain(Version));
+					}
+					return;
+				}
+	
+				// .whoami 一個探測權限的命令
+				if (plain == ".whoami")
+				{
+					// 如果沒有權限
+					if (HasPermission == false) {
+						m.Reply(MessageChain().Plain("Celestial > 你沒有操作Celestial的權限。"));
+						return;
+					}
 
-				// + Enable
+					// 如果有權限
+					m.Reply(MessageChain().Plain("Celestial > 你有操作Celestial的權限。"));
+					return;
+				}
+
+				// 需要權限
+
+				// 反撤回功能
+
+				// 指定反撤回功能的開啓
 				if (plain == ".norecall enable")
 				{
+					if (HasPermission == false)
+					{
+						m.Reply(MessageChain().Plain("Celestial > 欸 欸 (′～`;) 你不是管理呢, Celestial 不認識你啊"));
+						return;
+					}
 					groups[m.Sender.Group.GID] = true;
 					m.Reply(MessageChain().Plain("Celestial > 反撤回功能已被開啓."));
 					return;
 				}
 
-				// + Disable
+				// 指定反撤回功能的關閉
 				if (plain == ".norecall disable")
 				{
+					if (HasPermission == false)
+					{
+						m.Reply(MessageChain().Plain("Celestial > 欸 欸 (′～`;) 你不是管理呢, Celestial 不認識你啊"));
+						return;
+					}
 					groups[m.Sender.Group.GID] = false;
 					m.Reply(MessageChain().Plain("Celestial > 反撤回功能已被關閉."));
 					return;
 				}
 
-				// + General
+				// 沒有指定
 				if (plain == ".norecall")
 				{
+					if (HasPermission == false)
+					{
+						m.Reply(MessageChain().Plain("Celestial > 欸 欸 (′～`;) 你不是管理呢, Celestial 不認識你啊"));
+						return;
+					}
 					if (groups[m.Sender.Group.GID] == true)
 					{
 						groups[m.Sender.Group.GID] = false;
@@ -96,29 +152,20 @@ int main()
 						groups[m.Sender.Group.GID] = true;
 						m.Reply(MessageChain().Plain("Celestial > 反撤回功能已被開啓."));
 					}
+					return;
 				}
 
-				// 2. Bot
+				// 踢出功能
 
-				// + Not Specified
-				if (plain.substr(0,4) == ".bot" && isSpecified == false)
-				{
-					m.Reply(MessageChain().Plain(Version));
-				}
-				
-				// + Specified
-				if (plain.substr(0,4) == ".bot" && isSpecified == true)
-				{
-					if (bot_des == "2396") {
-						m.Reply(MessageChain().Plain(Version));
-					}
-				}
-
-				// 3. Ban
-
+				// 指定了目標
 				if (plain.substr(0,4) == ".ban" && msg.length() > 32)
 				{
-					if(qm.size() > 0)
+					if (HasPermission == false)
+					{
+						m.Reply(MessageChain().Plain("Celestial > 欸 欸 (′～`;) 你不是管理呢, Celestial 不認識你啊"));
+						return;
+					}
+					if (qm.size() > 0)
 					{
 						QQ_t sendqq;
 						string target = "";
@@ -131,17 +178,72 @@ int main()
 
 					}
 					m.Reply(MessageChain().Plain("Celestial > 操作成功執行。"));
-				}
-				if (plain.substr(0,4) == ".ban" && msg.length() <= 32)
-				{
-					m.Reply(MessageChain().Plain("Celestial > 請指定踢出目標!"));
+					return;
 				}
 
-				// 4. Mute
-				if (plain.substr(0,4) == ".mute")
+				// 沒有指定目標
+				if (plain.substr(0,4) == ".ban" && msg.length() <= 32)
 				{
-					m.Reply(MessageChain().Plain(msg));
+					if (HasPermission == false)
+					{
+						m.Reply(MessageChain().Plain("Celestial > 欸 欸 (′～`;) 你不是管理呢, Celestial 不認識你啊"));
+						return;
+					}
+					m.Reply(MessageChain().Plain("Celestial > 請指定踢出目標!"));
+					return;
 				}
+
+				// 禁言功能
+				if (plain.substr(0,5) == ".mute")
+				{
+					if (HasPermission == false)
+					{
+						m.Reply(MessageChain().Plain("Celestial > 欸 欸 (′～`;) 你不是管理呢, Celestial 不認識你啊"));
+						return;
+					}
+					if(qm.size() > 0)
+					{
+						cout << "Pass" << endl;
+						QQ_t targetnum;
+						string target = "";
+						cout << m.Sender.Group.GID << endl; 
+						for (size_t i = 0; i < qm.size(); i ++) {
+							int msgid = qm.at(i).MessageId();
+							targetnum = bot.GetGroupMessageFromId(msgid).Sender.QQ;
+						}
+						cout << "Pass" << endl;
+						int mute_time = 2505600;
+						cout << "Mute:" << m.Sender.Group.GID << " " << targetnum << " " << mute_time << endl;
+						bot.Mute(m.Sender.Group.GID, targetnum, mute_time);
+
+					}
+					m.Reply(MessageChain().Plain("Celestial > 操作成功執行。"));
+					return;
+				}
+
+				// 解除禁言功能
+				if (plain.substr(0,7) == ".unmute")
+				{
+					if (HasPermission == false)
+					{
+						m.Reply(MessageChain().Plain("Celestial > 欸 欸 (′～`;) 你不是管理呢, Celestial 不認識你啊"));
+						return;
+					}
+					if(qm.size() > 0)
+					{
+						QQ_t targetnum;
+						string target = "";
+						for (size_t i = 0; i < qm.size(); i ++) {
+							int msgid = qm.at(i).MessageId();
+							targetnum = bot.GetGroupMessageFromId(msgid).Sender.QQ;
+						}
+						int mute_time = 30*60;
+						bot.UnMute(m.Sender.Group.GID, targetnum);
+					}
+					m.Reply(MessageChain().Plain("Celestial > 操作成功執行。"));
+					return;
+				}
+
 			}
 			catch (const std::exception& ex)
 			{
