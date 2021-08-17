@@ -54,7 +54,7 @@ int main()
 				m.MessageChain.ToVector();
 				const string Version = "Celestial Alpha 0.1(Compiled with GNU GCC 11.1.0)\nRunning on Mirai(Linux amd64 5.13.10-arch1-1)\nMade with love by: SakuraiLH(GitHub)\n開源萬歲!\nIn-development right now.";
 
-				// 1. Bot Declearation
+				// 2. Bot Declearation
 				string bot_des = "";
 				bool isSpecified = false;
 				if (plain.length() > 4 && plain.substr(0,4) == ".bot")
