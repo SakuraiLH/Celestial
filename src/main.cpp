@@ -136,6 +136,12 @@ int main()
 				{
 					m.Reply(MessageChain().Plain("Celestial > 請指定踢出目標!"));
 				}
+
+				// 4. Mute
+				if (plain.substr(0,4) == ".mute")
+				{
+					m.Reply(MessageChain().Plain(msg));
+				}
 			}
 			catch (const std::exception& ex)
 			{
