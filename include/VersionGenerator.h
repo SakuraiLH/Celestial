@@ -25,7 +25,7 @@
 #endif
 	string compile_time = __TIMESTAMP__;
 
-string Celestial_Short_Version = "0.1";
+string Celestial_Short_Version = "0.2";
 string Celestial_Stable = "Alpha";
 string Celestial_Version = "Celestial " + Celestial_Stable + ' ' + Celestial_Short_Version + " By SakuraiLH(GitHub)" + '\n'
                         + "(Compiled with " + true_cxx + " at " + compile_time + ")" + '\n'
