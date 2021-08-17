@@ -50,6 +50,23 @@ void mute(string plain, bool HasPermission, GroupMessage m)
     string msg = m.MessageChain.ToString();
     vector<QuoteMessage> qm = m.MessageChain.GetAll<QuoteMessage>();
     m.MessageChain.ToVector();
+    int mute_time = 2505600;
+
+    // 判断末尾是否带有参数
+    bool HasParameter = true;
+    if (plain.length() <= 4) {
+        HasParameter = false;
+    }
+
+
+    // 收集参数
+    if (HasParameter)
+    {
+        string BackwardParameter = plain.substr(6);
+        const char* p = BackwardParameter.data();
+        mute_time = atoi(p) * 60;
+    }
+
     // 禁言功能
     if (plain.substr(0,5) == ".mute")
     {
@@ -60,7 +77,6 @@ void mute(string plain, bool HasPermission, GroupMessage m)
         }
         if(qm.size() > 0)
         {
-            cout << "Pass" << endl;
             QQ_t targetnum;
             string target = "";
             cout << m.Sender.Group.GID << endl; 
@@ -68,8 +84,7 @@ void mute(string plain, bool HasPermission, GroupMessage m)
                 int msgid = qm.at(i).MessageId();
                 targetnum = bot.GetGroupMessageFromId(msgid).Sender.QQ;
             }
-            cout << "Pass" << endl;
-            int mute_time = 2505600;
+
             cout << "Mute:" << m.Sender.Group.GID << " " << targetnum << " " << mute_time << endl;
             bot.Mute(m.Sender.Group.GID, targetnum, mute_time);
 
