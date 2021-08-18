@@ -18,7 +18,7 @@ void botcall(string &plain, GroupMessage &m)
 				
 	if (plain.substr(0,4) == ".bot" && isSpecified == true)
 	{
-	    if (bot_des == "2396") {
+	    if (bot_des == Celestial_QQ_Prefix) {
 		    m.Reply(MessageChain().Plain(Celestial_Version + '\n' + Celestial_Bot_Msg));
 		}
 		return;
