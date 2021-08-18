@@ -100,7 +100,22 @@ int main()
 		{
 			try
 			{
-				n.Accept();
+				GroupIntroduction(n);
+			}
+			catch(const std::exception& ex)
+			{
+				std::cerr << ex.what() << '\n';
+			}
+			
+		}
+	);
+
+	bot.On<BotJoinGroupEvent>(
+		[&](BotJoinGroupEvent h)
+		{
+			try
+			{
+				
 			}
 			catch(const std::exception& ex)
 			{
