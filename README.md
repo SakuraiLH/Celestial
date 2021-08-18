@@ -17,6 +17,9 @@ Mirai multi-function bot plugin
 
 <b>Mirai 多功能 机器人群管插件</b>
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/be68e2bcf2b44567a9d3cb7413a05252)](https://www.codacy.com/gh/SakuraiLH/Celestial/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=SakuraiLH/Celestial&amp;utm_campaign=Badge_Grade)
+![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)
+
 ## 安装 Celestial
 
 ### 0x01 编译 Celestial

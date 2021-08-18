@@ -17,7 +17,6 @@ void kick(string plain, bool HasPermission, GroupMessage m)
         if (qm.size() > 0)
         {
             QQ_t sendqq;
-            string target = "";
             for (size_t i = 0; i < qm.size(); i ++) {
                 int msgid = qm.at(i).MessageId();
                 sendqq = bot.GetGroupMessageFromId(msgid).Sender.QQ;
@@ -47,7 +46,6 @@ void kick(string plain, bool HasPermission, GroupMessage m)
 
 void mute(string plain, bool HasPermission, GroupMessage m)
 {
-    string msg = m.MessageChain.ToString();
     vector<QuoteMessage> qm = m.MessageChain.GetAll<QuoteMessage>();
     m.MessageChain.ToVector();
     int mute_time = 2505600;
@@ -109,7 +107,6 @@ void mute(string plain, bool HasPermission, GroupMessage m)
                 int msgid = qm.at(i).MessageId();
                 targetnum = bot.GetGroupMessageFromId(msgid).Sender.QQ;
             }
-            int mute_time = 30*60;
             bot.UnMute(m.Sender.Group.GID, targetnum);
         }
         m.Reply(MessageChain().Plain(Celestial_Action_Success));
