@@ -13,6 +13,9 @@ Mirai 是一个在全平台下运行，提供 QQ Android 和 TIM PC 协议支持
 </div>
 
 # Celestial
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6a2234671f0f49d3a1de0b7e670c85d7)](https://app.codacy.com/gh/SakuraiLH/Celestial?utm_source=github.com&utm_medium=referral&utm_content=SakuraiLH/Celestial&utm_campaign=Badge_Grade_Settings)
+
 Mirai multi-function bot plugin
 
 <b>Mirai 多功能 机器人群管插件</b>
