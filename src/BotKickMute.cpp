@@ -7,6 +7,10 @@ void kick(string plain, bool HasPermission, GroupMessage m)
     vector<QuoteMessage> qm = m.MessageChain.GetAll<QuoteMessage>();
     m.MessageChain.ToVector();
     // 指定了目標
+    if (plain.length() < 4)
+    {
+        return;
+    }
     if (plain.substr(0,4) == ".ban" && msg.length() > 32)
     {
         if (HasPermission == false)
@@ -50,6 +54,10 @@ void mute(string plain, bool HasPermission, GroupMessage m)
     m.MessageChain.ToVector();
     int mute_time = 2505600;
 
+    if (plain.length() < 5) {
+        return;
+    }
+    
     // 判断末尾是否带有参数
     bool HasParameter = true;
     if (plain.length() <= 4) {
@@ -60,6 +68,10 @@ void mute(string plain, bool HasPermission, GroupMessage m)
     // 收集参数
     if (HasParameter)
     {
+        if(plain.length() <= 5)
+        {
+            return;
+        }
         string BackwardParameter = plain.substr(6);
         const char* p = BackwardParameter.data();
         mute_time = atoi(p) * 60;

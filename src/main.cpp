@@ -5,6 +5,7 @@
 #include "BotKickMute.cpp"
 #include "AntiRecall.cpp"
 #include "MiscEvent.cpp"
+#include "NotesEvent.cpp"
 
 int main()
 {
@@ -51,6 +52,8 @@ int main()
 				mute(plain, HasPermission, m);
 				AntiRecall(plain, HasPermission, m);
 				LeaveGroup(plain, HasPermission, m);
+				ReadNotes(plain, HasPermission, m);
+				SaveNotes(plain, HasPermission, m);
 			}
 			catch (const std::exception& ex)
 			{

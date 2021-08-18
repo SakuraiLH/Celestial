@@ -19,6 +19,10 @@ void GroupIntroduction(BotInvitedJoinGroupRequestEvent &n)
 
 void LeaveGroup(string &plain, bool HasPermission, GroupMessage &m)
 {
+    if (plain.length() < 6)
+    {
+        return;
+    }
     if (plain.substr(0,6) == ".leave")
     {
         if (HasPermission == false)
