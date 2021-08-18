@@ -4,6 +4,7 @@
 #include "VersionGenerator.h"
 #include "BotKickMute.cpp"
 #include "AntiRecall.cpp"
+#include "MiscEvent.cpp"
 
 int main()
 {
@@ -80,6 +81,34 @@ int main()
 			}
 		});
 
+	bot.On<NewFriendRequestEvent>(
+		[&](NewFriendRequestEvent f)
+		{
+			try
+			{
+				FriendIntroduction(f);
+			}
+			catch(const std::exception& ex)
+			{
+				cout << ex.what() << '\n';
+			}
+			
+		});
+
+	bot.On<BotInvitedJoinGroupRequestEvent>(
+		[&](BotInvitedJoinGroupRequestEvent n)
+		{
+			try
+			{
+				n.Accept();
+			}
+			catch(const std::exception& ex)
+			{
+				std::cerr << ex.what() << '\n';
+			}
+			
+		}
+	);
 	// 在失去与mah的连接后重连
 	bot.On<LostConnection>([&](LostConnection e)
 		{

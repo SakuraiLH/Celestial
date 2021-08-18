@@ -20,5 +20,7 @@ string Celestial_Kick_Reason = "Ciallo～(∠・ω< )⌒★";
 
 string Celestial_Target_Not_Specified = Celestial_Prefix + "目标未指定! ┌(。Д。)┐";
 
+string Celestial_Welcome_Message = "欢迎使用Celestial酱～(∠・ω< )⌒★";
+
 string Celestial_WhoAmI_Permitted = Celestial_Prefix + "管理员狗修金，欢迎使用Celestial酱～(∠・ω< )⌒★";
 string Celestial_WhoAmI_Denied = Celestial_Prefix + "我不认得你啊kora (；′⌒`)";
