@@ -76,7 +76,6 @@ void mute(string plain, bool HasPermission, GroupMessage m)
         if(qm.size() > 0)
         {
             QQ_t targetnum;
-            string target = "";
             cout << m.Sender.Group.GID << endl; 
             for (size_t i = 0; i < qm.size(); i ++) {
                 int msgid = qm.at(i).MessageId();
