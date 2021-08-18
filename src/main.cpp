@@ -42,24 +42,15 @@ int main()
 		{
 			try
 			{
-				// ======= Declearation =======
-
-				// 其他變量
 				string plain = m.MessageChain.GetPlainText();
 				bool HasPermission = false;
 
-				// ======= Functions =======
-
 				botcall(plain, m);
-	
 				whoami(plain, HasPermission, m);
-
 				kick(plain, HasPermission, m);
-
 				mute(plain, HasPermission, m);
-
 				AntiRecall(plain, HasPermission, m);
-
+				LeaveGroup(plain, HasPermission, m);
 			}
 			catch (const std::exception& ex)
 			{
@@ -124,7 +115,7 @@ int main()
 			
 		}
 	);
-	// 在失去与mah的连接后重连
+
 	bot.On<LostConnection>([&](LostConnection e)
 		{
 			cout << e.ErrorMessage << " (" << e.Code << ")" << endl;
@@ -150,7 +141,6 @@ int main()
 	{
 		if (cmd == "exit")
 		{
-			// 程序结束前必须调用 Disconnect，否则 mirai-api-http 会内存泄漏。
 			bot.Disconnect();
 			break;
 		}

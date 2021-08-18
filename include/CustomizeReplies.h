@@ -16,6 +16,8 @@ string Celestial_Anti_Recall_Desc = Celestial_Prefix + "撤回內容如下: ";
 
 string Celestial_Bot_Msg = "Celestial 在这里哦 (∠・ω< )⌒★";
 
+string Celestial_Goodbye = Celestial_Prefix + "┌(。Д。)┐ Celestial 现在就走啦!";
+
 string Celestial_Kick_Reason = "Ciallo～(∠・ω< )⌒★";
 
 string Celestial_Target_Not_Specified = Celestial_Prefix + "目标未指定! ┌(。Д。)┐";
