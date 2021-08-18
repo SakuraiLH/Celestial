@@ -14,9 +14,11 @@ string Celestial_Anti_Recall_Enabled = Celestial_Prefix + "撤回内容全部给
 string Celestial_Anti_Recall_Disabled = Celestial_Prefix + "撤回内容之后就看不见啦!";
 string Celestial_Anti_Recall_Desc = Celestial_Prefix + "撤回內容如下: ";
 
-string Celestial_WhoAmI_Permitted = Celestial_Prefix + "管理员狗修金，欢迎使用Celestial酱～(∠・ω< )⌒★";
-string Celestial_WhoAmI_Denied = Celestial_Prefix + "我不认得你啊kora (；′⌒`)";
+string Celestial_Bot_Msg = "Celestial 在这里哦 (∠・ω< )⌒★";
+
+string Celestial_Kick_Reason = "Ciallo～(∠・ω< )⌒★";
 
 string Celestial_Target_Not_Specified = Celestial_Prefix + "目标未指定! ┌(。Д。)┐";
 
-string Celestial_Kick_Reason = "Ciallo～(∠・ω< )⌒★";
+string Celestial_WhoAmI_Permitted = Celestial_Prefix + "管理员狗修金，欢迎使用Celestial酱～(∠・ω< )⌒★";
+string Celestial_WhoAmI_Denied = Celestial_Prefix + "我不认得你啊kora (；′⌒`)";

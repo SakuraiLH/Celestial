@@ -12,14 +12,14 @@ void botcall(string &plain, GroupMessage &m)
     }
     if (plain.substr(0,4) == ".bot" && isSpecified == false)
 	{
-		m.Reply(MessageChain().Plain(Celestial_Version));
+		m.Reply(MessageChain().Plain(Celestial_Version + '\n' + Celestial_Bot_Msg));
 		return;
 	}
 				
 	if (plain.substr(0,4) == ".bot" && isSpecified == true)
 	{
 	    if (bot_des == "2396") {
-		    m.Reply(MessageChain().Plain(Celestial_Version));
+		    m.Reply(MessageChain().Plain(Celestial_Version + '\n' + Celestial_Bot_Msg));
 		}
 		return;
     }
