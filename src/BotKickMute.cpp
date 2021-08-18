@@ -60,7 +60,7 @@ void mute(string plain, bool HasPermission, GroupMessage m)
     
     // 判断末尾是否带有参数
     bool HasParameter = true;
-    if (plain.length() <= 4) {
+    if (plain.length() <= 5) {
         HasParameter = false;
     }
 
@@ -68,10 +68,6 @@ void mute(string plain, bool HasPermission, GroupMessage m)
     // 收集参数
     if (HasParameter)
     {
-        if(plain.length() <= 5)
-        {
-            return;
-        }
         string BackwardParameter = plain.substr(6);
         const char* p = BackwardParameter.data();
         mute_time = atoi(p) * 60;
@@ -88,13 +84,10 @@ void mute(string plain, bool HasPermission, GroupMessage m)
         if(qm.size() > 0)
         {
             QQ_t targetnum;
-            cout << m.Sender.Group.GID << endl; 
             for (size_t i = 0; i < qm.size(); i ++) {
                 int msgid = qm.at(i).MessageId();
                 targetnum = bot.GetGroupMessageFromId(msgid).Sender.QQ;
             }
-
-            cout << "Mute:" << m.Sender.Group.GID << " " << targetnum << " " << mute_time << endl;
             bot.Mute(m.Sender.Group.GID, targetnum, mute_time);
 
         }
