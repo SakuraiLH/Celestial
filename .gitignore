@@ -2,4 +2,5 @@
 out/
 build/
 .vscode/
+.DS_Store
 CMakeSettings.json

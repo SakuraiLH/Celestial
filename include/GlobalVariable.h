@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 #include <mirai.h>
+#include <fstream>
+#include <sys/stat.h>
 #include "CustomizeReplies.h"
 
 using namespace std;

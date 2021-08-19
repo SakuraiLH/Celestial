@@ -21,7 +21,9 @@ string Celestial_Goodbye = Celestial_Prefix + "┌(。Д。)┐ Celestial 现在
 string Celestial_Kick_Reason = "Ciallo～(∠・ω< )⌒★";
 
 string Celestial_Notes_Not_Specified = Celestial_Prefix + "你没有指定要Celestial去找的笔记了啦（恼";
-string Celestial_Notes_Not_Found = "┌(。Д。)┐ 笔记未找到!";
+string Celestial_Notes_Not_Found = Celestial_Prefix + "┌(。Д。)┐ 笔记未找到!";
+string Celestial_Notes_New = Celestial_Prefix + "Celestial 没有在本群中找到任何的笔记哦？";
+string Celestial_Notes_Header = Celestial_Prefix + "Celestial 在本群中找到的笔记如下:";
 
 string Celestial_Target_Not_Specified = Celestial_Prefix + "目标未指定! ┌(。Д。)┐";
 
