@@ -46,6 +46,8 @@ int main()
 				string plain = m.MessageChain.GetPlainText();
 				bool HasPermission = false;
 
+				DeletePlainSpace(plain);
+
 				botcall(plain, m);
 				whoami(plain, HasPermission, m);
 				kick(plain, HasPermission, m);

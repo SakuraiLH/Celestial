@@ -35,3 +35,15 @@ void LeaveGroup(string &plain, bool HasPermission, GroupMessage &m)
         return;
     }
 }
+
+void DeletePlainSpace(string &plain)
+{
+    if (plain.length() <= 1)
+    {
+        return;
+    }
+    while(plain[0] == ' ')
+    {
+        plain = plain.substr(1);
+    }
+}
