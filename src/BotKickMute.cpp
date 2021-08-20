@@ -106,7 +106,6 @@ void mute(string plain, bool HasPermission, GroupMessage m)
         if(qm.size() > 0)
         {
             QQ_t targetnum;
-            string target = "";
             for (size_t i = 0; i < qm.size(); i ++) {
                 int msgid = qm.at(i).MessageId();
                 targetnum = bot.GetGroupMessageFromId(msgid).Sender.QQ;
