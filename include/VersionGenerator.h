@@ -27,10 +27,9 @@
 
 string Celestial_Short_Version = "0.2";
 string Celestial_Stable = "Alpha";
-string Celestial_Minor_Version = "210";
+string Celestial_Minor_Version = "212";
 string Celestial_Private_Version = "Celestial " + Celestial_Stable + ' ' + Celestial_Short_Version + '(' + Celestial_Minor_Version + ')' + " By SakuraiLH(GitHub)" + '\n'
                         + "(Compiled with " + true_cxx + " at " + compile_time + ")" + '\n'
                         + "Running on Mirai/" + current_os + " for this build.";
 string Celestial_Version = Celestial_Private_Version + '\n'
-                        + "Long live the open source!" + '\n'
-                        + "Github Link: https://github.com/SakuraiLH/Celestial";
+                        + "Long live the open source!";

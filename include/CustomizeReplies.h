@@ -18,6 +18,8 @@ string Celestial_Bot_Msg = "Celestial 在这里哦 (∠・ω< )⌒★";
 
 string Celestial_Goodbye = Celestial_Prefix + "┌(。Д。)┐ Celestial 现在就走啦!";
 
+string Celestial_Help_Content_Not_Found = Celestial_Prefix + "Celestial 没有找到对应的帮助信息！";
+
 string Celestial_Kick_Reason = "Ciallo～(∠・ω< )⌒★";
 
 string Celestial_Notes_Not_Specified = Celestial_Prefix + "你没有指定要Celestial去找的笔记了啦（恼";

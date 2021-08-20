@@ -1,3 +1,4 @@
+#pragma once
 #include "GlobalVariable.h"
 #include "VersionGenerator.h"
 

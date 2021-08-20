@@ -6,6 +6,7 @@
 #include "AntiRecall.cpp"
 #include "MiscEvent.cpp"
 #include "NotesEvent.cpp"
+#include "HelpCore.cpp"
 
 int main()
 {
@@ -29,14 +30,30 @@ int main()
 			bot.Connect(opts);
 			break;
 		}
-		catch (const std::exception& ex)
+		catch (const std::exception& e)
 		{
-			cout << ex.what() << endl;
+			cout << e.what() << endl;
 		}
 		MiraiBot::SleepSeconds(1);
 	}
 
 	cout << "Bot Working..." << endl;
+
+	bot.On<Message>(
+		[&](Message k)
+		{
+			try
+			{
+				string plain = k.MessageChain.GetPlainText();
+				HelpMsg(plain, k);
+			}
+			catch(const std::exception& e)
+			{
+				std::cerr << e.what() << '\n';
+			}
+			
+		}
+	);
 
 	bot.On<GroupMessage>(
 		[&](GroupMessage m)
@@ -59,7 +76,7 @@ int main()
 			}
 			catch (const std::exception& ex)
 			{
-				cout << ex.what() << endl;
+				std::cerr << ex.what() << endl;
 			}
 		});
 
@@ -73,7 +90,7 @@ int main()
 			}
 			catch (const std::exception& ex)
 			{
-				cout << ex.what() << endl;
+				std::cerr << ex.what() << endl;
 			}
 		});
 
@@ -135,7 +152,7 @@ int main()
 				}
 				catch (const std::exception& ex)
 				{
-					cout << ex.what() << endl;
+					std::cerr << ex.what() << endl;
 				}
 				MiraiBot::SleepSeconds(1);
 			}
