@@ -140,9 +140,7 @@ int SaveNotes(string &plain, bool &HasPermission, GroupMessage &m)
 
     if (plain.substr(0,5) == ".save")
     {
-        // 保存Notes
-        m.Reply(MessageChain().Plain("此功能尚未开放(∠・ω< )⌒★ Function: 2"));
-        return 0;
+        // save function
     }
     return 0;
 }

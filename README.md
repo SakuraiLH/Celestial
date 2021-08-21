@@ -110,3 +110,19 @@ adapterSettings:
 执行在 0x01中所得到的二进制文件。
 
 在`~/Mirai`下，使用`./mcl `启动机器人。使用`login QQ号 QQ密码`登陆Mirai。
+
+### 0x06 自定义部分
+
+Celestial的回复内容都集中在一个统一的头文件`include/CustomReplies.h`中。
+你可以在`CustomReplies.h`中修改回复内容。
+
+某些Celestial指令包含有针对单一实例的QQ账户前四位认证，关于特定实例选定这部分
+的更改Celestial将不会自动变更。你可以在`include/Globalvariables.h`中找到字符串变量
+`Celestial_QQ_Prefix`，推荐修改。
+
+### 0x07 法律信息
+
+Copyright <C> 2021 SakuraiLH, Celestial.<br>
+All rights reserved.
+
+通过AGPL v3协议开源。
