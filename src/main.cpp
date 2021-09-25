@@ -21,6 +21,7 @@ int main()
 	opts.WebSocketPort = 8080;
 	opts.VerifyKey = "123";
 	bool anti_recall = false;
+	string Celestial_QQ_Prefix = to_string(opts.BotQQ.Get().ToInt64());
 
 	while (true)
 	{
@@ -65,7 +66,7 @@ int main()
 
 				DeletePlainSpace(plain);
 
-				botcall(plain, m);
+				botcall(plain, m, Celestial_QQ_Prefix);
 				whoami(plain, HasPermission, m);
 				kick(plain, HasPermission, m);
 				mute(plain, HasPermission, m);

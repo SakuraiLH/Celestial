@@ -1,7 +1,7 @@
 #include "GlobalVariable.h"
 #include "VersionGenerator.h"
 
-void botcall(string &plain, GroupMessage &m)
+void botcall(string &plain, GroupMessage &m, string Celestial_QQ_Prefix)
 {				
     string bot_des = "";
     bool isSpecified = false;

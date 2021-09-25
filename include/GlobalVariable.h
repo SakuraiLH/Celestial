@@ -12,5 +12,3 @@ using namespace Cyan;
 
 MiraiBot bot;
 SessionOptions opts;
-
-string Celestial_QQ_Prefix = "2396";
