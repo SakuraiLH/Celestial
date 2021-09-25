@@ -10,10 +10,6 @@
 
 int main()
 {
-#if defined(WIN32) || defined(_WIN32)
-	system("chcp 65001");
-#endif
-
 	opts.BotQQ = 239686941_qq;
 	opts.HttpHostname = "localhost";
 	opts.WebSocketHostname = "localhost";
