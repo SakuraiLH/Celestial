@@ -116,10 +116,6 @@ adapterSettings:
 Celestial的回复内容都集中在一个统一的头文件`include/CustomReplies.h`中。
 你可以在`CustomReplies.h`中修改回复内容。
 
-某些Celestial指令包含有针对单一实例的QQ账户前四位认证，关于特定实例选定这部分
-的更改Celestial将不会自动变更。你可以在`include/Globalvariables.h`中找到字符串变量
-`Celestial_QQ_Prefix`，推荐修改。
-
 ### 0x07 法律信息
 
 Copyright <C> 2021 SakuraiLH, Celestial.<br>
