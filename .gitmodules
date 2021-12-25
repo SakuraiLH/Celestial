@@ -1,0 +1,3 @@
+[submodule "mirai-cpp"]
+	path = mirai-cpp
+	url = https://github.com/cyanray/mirai-cpp
