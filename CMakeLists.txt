@@ -11,6 +11,10 @@ include_directories(include)
 target_link_libraries(${PROJECT_NAME} PRIVATE mirai-cpp)
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE MIRAICPP_STATICLIB)
+
+find_package(nlohmann_json 3.2.0 REQUIRED)
+target_link_libraries(foo PRIVATE nlohmann_json::nlohmann_json)
+
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     target_link_libraries(${PROJECT_NAME} PRIVATE pthread)
     target_link_libraries(${PROJECT_NAME} PRIVATE -static-libgcc -static-libstdc++)
